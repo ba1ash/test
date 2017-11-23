@@ -9,5 +9,6 @@ group :development, :test do
   gem 'pry'
 end
 
-group :development do
+group :test do
+  gem 'minitest-reporters'
 end

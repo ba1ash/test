@@ -1,9 +1,9 @@
 require File.expand_path('../../config/environment', __FILE__)
-require 'rails/test_help'
+require 'action_dispatch/testing/integration'
+require 'active_support/test_case'
+require 'active_support/testing/autorun'
+require 'minitest/reporters'
 
-class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
-
-  # Add more helper methods to be used by all tests here...
-end
+Minitest::Reporters.use!(Minitest::Reporters::ProgressReporter.new,
+                         ENV,
+                         Minitest.backtrace_filter)
