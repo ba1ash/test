@@ -4,6 +4,11 @@ gem 'rails', '~> 5.1.4'
 gem 'pg', '~> 0.21'
 gem 'puma', '~> 3.7'
 gem 'tzinfo-data'
+gem 'oj'
+gem 'dry-validation'
+gem 'dry-transaction'
+gem 'faker', require: false
+gem 'curb', require: false
 
 group :development, :test do
   gem 'pry'
@@ -11,4 +16,5 @@ end
 
 group :test do
   gem 'minitest-reporters'
+  gem 'database_cleaner'
 end

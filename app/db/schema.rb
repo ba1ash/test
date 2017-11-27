@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20171126131953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ips", primary_key: "ip", id: :inet, force: :cascade do |t|
+    t.string "authors", limit: 100, array: true
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title", limit: 400, null: false
+    t.text "content", null: false
+    t.inet "ip"
+    t.string "author", limit: 100, null: false
+    t.float "average_rating"
+    t.integer "number_of_ratings", limit: 2, default: 0, null: false
+    t.index ["average_rating"], name: "posts_average_rating_desc_index_index", order: { average_rating: :desc }
+  end
 
 end

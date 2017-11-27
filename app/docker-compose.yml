@@ -11,3 +11,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    environment:
+      - RACK_ENV
+      - URL
+      - POST_NUMBER
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK
