@@ -29,17 +29,20 @@
     Number of posts to generate. Used by db/seeds.rb script
 
 * Installation process
-  - `docker-compose build`
-  - `RACK_ENV=production docker-compose run api bundle exec bin/rails db:schema:load`
+  - `docker-compose up --no-start`
+  - `RACK_ENV=production docker-compose run api bundle exec bin/rails db:create`
+  - `RACK_ENV=production docker-compose run api bundle exec bin/rails db:migrate` 
+     not `db:schema:load`, because we have `ALTER SYSTEM` commands in the migration
+     not a good idea, but a little bit handy. postgresql.conf will be better place for such things
 
 * Run service
-  - `RACK_ENV=production docker-compose run`
+  - `RACK_ENV=production docker-compose up`
   
     Service is available on 3000 port of local machine.
 
 * Seed the database
   
-  - `docker-compose exec api bundle exec bin/rails db:seed`
+  - `RACK_ENV=production docker-compose exec api bundle exec bin/rails db:seed`
   
     The script send real request using `curb` and thread pool to our web service.
     URL and POST_NUMBER is actual here, `http://localhost:3000` and `200` are the default values respectively
