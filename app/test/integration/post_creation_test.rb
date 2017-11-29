@@ -75,5 +75,9 @@ class PostCreationTest < ActionDispatch::IntegrationTest
     assert_equal('Title', parsed_response['title'])
     assert_equal('Content', parsed_response['content'])
     assert_equal('linus', parsed_response['author'])
+
+    get('/ips', headers: { 'Accept' => 'application/json' } )
+    assert_equal(200, status)
+    assert_equal(Oj.dump([{ ip: '127.0.0.0', authors: ['linus'] }]), body)
   end
 end

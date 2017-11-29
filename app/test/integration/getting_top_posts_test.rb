@@ -24,4 +24,10 @@ class GettingTopPostsTest < ActionDispatch::IntegrationTest
     assert_equal(200, status)
     assert_equal('[{"title":"Top rated post","content":"Content"},{"title":"Second rated post","content":"Content"}]', body)
   end
+
+  def test_zero_posts_exists
+    get('/posts/top/2', headers: { 'Accept' => 'application/json' } )
+    assert_equal(200, status)
+    assert_equal('[]', body)
+  end
 end
